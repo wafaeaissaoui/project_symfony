@@ -1,0 +1,619 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RenoshpeBee - Categories{% endblock %}
+
+{% block body %}
+<section class="shopListLeftSidebar">
+        <div class="container">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Page</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Category</a></li>
+                </ol>
+            </nav>
+
+            <div class="row" id="body-row">
+                <!-- Sidebar -->
+                <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                    <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+                    <!-- Bootstrap List Group -->
+                    <ul class="list-group">
+                        <!-- Separator with title -->
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                            <small>CATEGORIES</small>
+                        </li>
+                        <!-- /END Separator -->
+                        <!-- Menu with submenu -->
+                        {% for categorie in categorie %}
+                        <a href="{{ path('categorie', {'id' : categorie.id}) }}" data-toggle="sidebar-colapse" class="list-group-item d-flex align-items-center">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="tile">◼</span>
+                                <span id="collapse-text" class="menu-collapsed">{{ categorie.nomCategorie }}</span>
+                            </div>
+                        </a>
+                        {%endfor%}
+                        <!--
+                        <a href="#" data-toggle="sidebar-colapse" class="list-group-item d-flex align-items-center">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="tile">◼</span>
+                                <span id="collapse-text" class="menu-collapsed">Dresses (50)</span>
+                            </div>
+                        </a>
+                        <a href="#" data-toggle="sidebar-colapse" class="list-group-item d-flex align-items-center">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="tile">◼</span>
+                                <span id="collapse-text" class="menu-collapsed">Women (150)</span>
+                            </div>
+                        </a>
+                        <a href="#" data-toggle="sidebar-colapse" class="list-group-item d-flex align-items-center">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="tile">◼</span>
+                                <span id="collapse-text" class="menu-collapsed">Men (150)</span>
+                            </div>
+                        </a>
+                        <a href="#" data-toggle="sidebar-colapse" class="list-group-item d-flex align-items-center">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="tile">◼</span>
+                                <span id="collapse-text" class="menu-collapsed">Watch (150)</span>
+                            </div>
+                        </a>
+                        <a href="#" data-toggle="sidebar-colapse" class="list-group-item d-flex align-items-center">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="tile">◼</span>
+                                <span id="collapse-text" class="menu-collapsed">Clothing (150)</span>
+                            </div>
+                        </a>
+                        <a href="#" data-toggle="sidebar-colapse"
+                            class="list-group-item d-flex align-items-center border-bottom pb-4">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="tile">◼</span>
+                                <span id="collapse-text" class="menu-collapsed">Bags (150)</span>
+                            </div>
+                        </a>-->
+
+                        <!-- Separator with title -->
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed pt-4">
+                            <small>PRICE FILTER</small>
+                        </li>
+
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed border-bottom pb-4">
+                            <form>
+                                <fieldset class="filter-price">
+
+                                    <div class="price-field">
+                                        <input type="range" min="0" max="4000" value="10" id="lower">
+                                        <input type="range" min="0" max="4000" value="3000" id="upper">
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price-container">
+                                            <div class="price-wrap-1">
+                                                <input id="one">
+                                            </div>
+                                            <div class="price-wrap-2">
+                                                <input id="two">
+                                            </div>
+                                            <div class="price-wrap-2">
+                                                <button class="micro-btn"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </li>
+
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed pt-4">
+                            <small>SIZE</small>
+                        </li>
+
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed border-bottom pb-4">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button class="btn-white-small">XS</button>
+                                    <button class="btn-white-small">S</button>
+                                    <button class="btn-white-small">M</button>
+                                    <button class="btn-white-small">L</button>
+                                    <button class="btn-white-small">SL</button>
+                                    <button class="btn-white-small">XL</button>
+                                    <button class="btn-white-small">XXL</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed pt-4">
+                            <small>COLORS</small>
+                        </li>
+
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed border-bottom pb-4">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="co"></button>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="Leftsidebar-text">Black</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="co active-color"></button>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="Leftsidebar-text">White</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="co"></button>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="Leftsidebar-text">Blue</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="co"></button>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="Leftsidebar-text">Yellow</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="co"></button>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="Leftsidebar-text">Yellow</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed pt-4">
+                            <small>TOP RATED</small>
+                        </li>
+
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed border-bottom pb-4">
+                            <div>
+                                {% set cpt2 = 0 %}
+                                {% for article in article %}
+                                {% if cpt2 < 3 %}
+                                <div class="row pb-4">
+                                    <div class="col-md-4 p-0 pl-3">
+                                        <a href="{{ path('detailProduit', {'id' : article.id})}}"><img src="{{ article.imageArticle }}" width="100%" class="" alt=""></a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <small>{{ article.nomArticle }}</small>
+                                        <div class="fiyat-small pr-2 mt-4">${{ article.prix|number_format(2, '.', ',')}}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% set cpt2 = cpt2 + 1 %}
+                                {% endfor %}
+                                <!--
+                                <div class="row pb-4">
+                                    <div class="col-md-4 p-0 pl-3">
+                                        <img src="/assets/img/productWishlistBg.png" width="100%" class="" alt="">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <small>casual men wearing cool shoe</small>
+                                        <div class="fiyat-small pr-2 mt-4">$250.00</div>
+                                    </div>
+                                </div>
+                                <div class="row pb-4">
+                                    <div class="col-md-4 p-0 pl-3">
+                                        <img src="/assets/img/productWishlistBg.png" width="100%" class="" alt="">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <small>casual men wearing cool shoe</small>
+                                        <div class="fiyat-small pr-2 mt-4">$250.00</div>
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </li>
+
+                        <li
+                            class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed pt-5">
+                            <img src="/assets/img/banner.png" width="100%" class="" alt="">
+                        </li>
+
+                    </ul><!-- List Group END-->
+                </div><!-- sidebar-container END -->
+
+                <!-- MAIN -->
+                <div class="col" id="body-col">
+                    <div id="cy">
+                        <div class="showProduct">
+                            <div class="row justify-content-center border-bottom mb-5" style="align-items : center;">
+                                <div class="col-md-9 showing">
+                                    {% set cpt = 0 %}
+                                    {% for article in article %}{% set cpt = cpt + 1 %}{% endfor %}
+                                    {% set nbrPage = cpt / 12 %}
+                                    {% set nbrPage = nbrPage|number_format  + 1 %}
+                                    <p>Showing 1-12 of {{ cpt }} results</p>
+                                </div>
+                                <div class="col-md-3 sortby">
+                                    <select class="form-control form-control-lg">
+                                        <option>Sort by newness</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {% set cpt = 0 %}
+                            {% for article in article %}{% set cpt = cpt + 1 %}{% endfor %}
+                            {% for article in article %}
+                            <div class="media">
+                                <div class="productCard">
+                                    <div class="row justify-content-start mb-4">
+                                        <div class="col-md-4 product-img wow fadeInRight" data-wow-duration="1.4s">
+                                            <a href="{{ path('detailProduit', {'id' : article.id})}}"><img src="{{ article.imageArticle }}" width="100%" class=""
+                                                alt=""></a>
+                                        </div>
+                                        <div class="col-md-auto"></div>
+                                        <div class="col-md-7 mt-3 wow fadeInRight" data-wow-duration="1.4s">
+                                            <div class="media-body ">
+                                                <div class="row">
+                                                    <div class="col-md-12 pb-2">
+                                                        <h4>{{ article.nomArticle }}</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="fiyat pr-2">${{ article.prix|number_format(2, '.', ',')}}</div>
+                                                        <div class="rating pt-2">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 mt-3">
+                                                        <p style="font-size: 13px;">{{ article.description }}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <span class="gray"></span>
+                                                    </div>
+                                                </div>
+
+                                                <form action="/panier/add/{{article.id}}">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group input-group">
+                                                                <button type="submit" class="btn pl-3 pr-3 mr-2"><i
+                                                                        class="fa fa-btn fa-shopping-cart"></i>Add to
+                                                                    cart</button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-heart-o"></i></button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-retweet"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!--
+                            <div class="media">
+                                <div class="productCard">
+                                    <div class="row justify-content-start mb-4">
+                                        <div class="col-md-4 product-img wow fadeInRight" data-wow-duration="1.4s">
+                                            <img src="assets/img/productShopListFullBg.png" width="100%" class=""
+                                                alt="">
+                                        </div>
+                                        <div class="col-auto"></div>
+                                        <div class="col-md-7 mt-3 wow fadeInRight" data-wow-duration="1.4s">
+                                            <div class="media-body ">
+                                                <div class="row">
+                                                    <div class="col-md-12 pb-2">
+                                                        <h4>Treatlse on the</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="fiyat pr-2">$250.00</div>
+                                                        <div class="rating pt-2">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 mt-3">
+                                                        <p style="font-size: 13px;">Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit, sed do eiusmod tempor
+                                                            incididunt ut labore et dolore magna aliqua. Tu enim ad
+                                                            minim veniam, quis nostrud exercitation ullamco laboris
+                                                            nisit ut aliquip ex ea commodo consequat.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <span class="gray">Shoes, T-Shirt teen</span>
+                                                    </div>
+                                                </div>
+
+                                                <form class="">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group input-group">
+                                                                <button type="submit" class="btn pl-3 pr-3 mr-2"><i
+                                                                        class="fa fa-btn fa-shopping-cart"></i>Add to
+                                                                    cart</button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-heart-o"></i></button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-retweet"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="productCard">
+                                    <div class="row justify-content-start mb-4">
+                                        <div class="col-md-4 product-img wow fadeInRight" data-wow-duration="1.4s">
+                                            <img src="assets/img/productShopListFullBg.png" width="100%" class=""
+                                                alt="">
+                                        </div>
+                                        <div class="col-auto"></div>
+                                        <div class="col-md-7 mt-3 wow fadeInRight" data-wow-duration="1.4s">
+                                            <div class="media-body ">
+                                                <div class="row">
+                                                    <div class="col-md-12 pb-2">
+                                                        <h4>Treatlse on the</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="fiyat pr-2">$250.00</div>
+                                                        <div class="rating pt-2">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 mt-3">
+                                                        <p style="font-size: 13px;">Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit, sed do eiusmod tempor
+                                                            incididunt ut labore et dolore magna aliqua. Tu enim ad
+                                                            minim veniam, quis nostrud exercitation ullamco laboris
+                                                            nisit ut aliquip ex ea commodo consequat.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <span class="gray">Shoes, T-Shirt teen</span>
+                                                    </div>
+                                                </div>
+
+                                                <form class="">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group input-group">
+                                                                <button type="submit" class="btn pl-3 pr-3 mr-2"><i
+                                                                        class="fa fa-btn fa-shopping-cart"></i>Add to
+                                                                    cart</button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-heart-o"></i></button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-retweet"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="productCard">
+                                    <div class="row justify-content-start mb-4">
+                                        <div class="col-md-4 product-img wow fadeInRight" data-wow-duration="1.4s">
+                                            <img src="assets/img/productShopListFullBg.png" width="100%" class=""
+                                                alt="">
+                                        </div>
+                                        <div class="col-auto"></div>
+                                        <div class="col-md-7 mt-3 wow fadeInRight" data-wow-duration="1.4s">
+                                            <div class="media-body ">
+                                                <div class="row">
+                                                    <div class="col-md-12 pb-2">
+                                                        <h4>Treatlse on the</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="fiyat pr-2">$250.00</div>
+                                                        <div class="rating pt-2">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 mt-3">
+                                                        <p style="font-size: 13px;">Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit, sed do eiusmod tempor
+                                                            incididunt ut labore et dolore magna aliqua. Tu enim ad
+                                                            minim veniam, quis nostrud exercitation ullamco laboris
+                                                            nisit ut aliquip ex ea commodo consequat.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <span class="gray">Shoes, T-Shirt teen</span>
+                                                    </div>
+                                                </div>
+
+                                                <form class="">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group input-group">
+                                                                <button type="submit" class="btn pl-3 pr-3 mr-2"><i
+                                                                        class="fa fa-btn fa-shopping-cart"></i>Add to
+                                                                    cart</button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-heart-o"></i></button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-retweet"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="productCard">
+                                    <div class="row justify-content-start mb-4">
+                                        <div class="col-md-4 product-img wow fadeInRight" data-wow-duration="1.4s">
+                                            <img src="assets/img/productShopListFullBg.png" width="100%" class=""
+                                                alt="">
+                                        </div>
+                                        <div class="col-auto"></div>
+                                        <div class="col-md-7 mt-3 wow fadeInRight" data-wow-duration="1.4s">
+                                            <div class="media-body ">
+                                                <div class="row">
+                                                    <div class="col-md-12 pb-2">
+                                                        <h4>Treatlse on the</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="fiyat pr-2">$250.00</div>
+                                                        <div class="rating pt-2">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 mt-3">
+                                                        <p style="font-size: 13px;">Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit, sed do eiusmod tempor
+                                                            incididunt ut labore et dolore magna aliqua. Tu enim ad
+                                                            minim veniam, quis nostrud exercitation ullamco laboris
+                                                            nisit ut aliquip ex ea commodo consequat.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <span class="gray">Shoes, T-Shirt teen</span>
+                                                    </div>
+                                                </div>
+
+                                                <form class="">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group input-group">
+                                                                <button type="submit" class="btn pl-3 pr-3 mr-2"><i
+                                                                        class="fa fa-btn fa-shopping-cart"></i>Add to
+                                                                    cart</button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-heart-o"></i></button>
+                                                                <button type="button" class="btn mr-2"><i
+                                                                        class="fa fa-retweet"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>-->
+                            <nav class="pag mt-5" aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item first">
+                                        <a class="page-link" href="#" aria-label="First">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">First</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&lsaquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    {% for i in 1..nbrPage %}
+                                    <li class="page-item"><a class="page-link active" href="#">{{ i }}</a></li>
+                                    {%endfor%}
+                                    <!--
+                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item"><a class="page-link">...</a></li>
+                                    -->
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&rsaquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item last">
+                                        <a class="page-link" href="#" aria-label="Last">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Last</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div><!-- Main Col END -->
+
+            </div><!-- body-row END -->
+        </div>
+    </section>
+{% endblock %}

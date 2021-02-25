@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        # List the entity class name you want to manage
+        Article:
+            class: App\Entity\Article
+            list:
+                # 'name' doesn't exist as a Doctrine entity property
+                fields: ['nomArticle', 'imageArticle', 'description', 'prix', 'quantiteEnStock', 'categorie']
+            #label: "Article"
+
+
+        Categorie :
+            class: App\Entity\Categorie
+    
+        Panier:
+            class: App\Entity\Panier
+        
+        User:
+            class: App\Entity\User

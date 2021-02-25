@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700|Roboto:400,700&display=swap&subset=latin-ext"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+           
+        {% endblock %}
+    </head>
+    <body>
+        <section class="header">
+        <div id="overlayMenu">
+            <span><i id="overlayMenuKapat" class="fa fa-times" aria-hidden="true"></i></span>
+            <ul>
+                <li class="selected"><a href="/">HOME</a></li>
+                <li><a href="/categorie/{{ app.session.get('var') }}">CATEGORIES</a></li>
+                <li><a href="/produit">PRODUCTS</a></li>
+                <li><a href="/offre">OFFERS</a></li>
+                <li><a href="">CONTACT US</a></li>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPERADMIN') %}
+                <li><a href="/admin">ADMIN</a></li>
+                {% endif %}
+                {% if not app.user %}
+                <li><a href="/connexion">LOGIN</a></li>
+                <li><a href="/inscription">REGISTER</a></li>
+                {% else %}
+                <li><a href="/deconnexion">LOGOUT</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="container-fluid topInfo d-none d-md-block">
+            <div class="row">
+                <div class="verticalMiddle col-sm-6 offset-1">
+                    <div class="d-flex flex-row justify-content-start">
+                        <i class="fa fa-phone pl-2 pr-3 verticalMiddle" aria-hidden="true"></i><a href="tel:+1123456789"
+                            target="_blank">+1 123 456 789</a>
+                        <span class="vl ml-4 pr-4">&nbsp;</span>
+                        <i class="fa fa-envelope pr-3 verticalMiddle" aria-hidden="true"></i><a href="info@company.com"
+                            target="_blank">info@company.com</a>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    &nbsp;
+                </div>
+                <div class="verticalMiddle col-sm-2">
+                    <div class="socialIcons">
+                        <div class="text-right text-lg-right d-flex flex-row justify-content-between ">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            <i class="fa fa-behance" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="topMenu container-fluid ">
+            <div class="row">
+                <div class="logo col-5 col-md-8 col-xl-2 offset-md-1 text-left verticalMiddle wow fadeInDown"
+                    data-wow-duration="1.4s">
+                    {% if not app.user %}
+                    Renoshop<span>Bee</span>
+                    {% else %}
+                    <i class="fa fa-user" style="font-size: 22px;"></i>&nbsp;&nbsp;<span style="font-size: 16px;color: rgba(0,0,0,0.8);">{{ app.user.nom }} <span>{{ app.user.prenom }}</span><span>
+                    {% endif %}
+                </div>
+                <div class="menu text-center d-none d-xl-block col-lg-5 col-xl-6 verticalMiddle">
+                    <ul>
+                        <!--
+                        <li class="selected wow fadeInDown" data-wow-duration="1.4s" data-wow-delay="0.1s"><a
+                                href="#">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-duration="1.4s" data-wow-delay="0.2s"><a href="#">Women</a>
+                        </li>
+                        <li class="wow fadeInDown" data-wow-duration="1.4s" data-wow-delay="0.3s"><a href="#">Men</a>
+                        </li>
+                        <li class="wow fadeInDown" data-wow-duration="1.4s" data-wow-delay="0.4s"><a href="#">Kids</a>
+                        </li>
+                        <li class="wow fadeInDown" data-wow-duration="1.4s" data-wow-delay="0.5s"><a
+                                href="#">Jewellery</a></li>
+                        <li class="wow fadeInDown" data-wow-duration="1.4s" data-wow-delay="0.6s"><a
+                                href="#">Accessories</a></li>
+                        -->
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.1s"><a
+                                href="/">Home</a></li>
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.2s"><a href="/categorie/{{ app.session.get('var') }}">Categories</a>
+                        </li>
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.2s"><a href="/produit">Products</a>
+                        </li>
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.3s"><a href="/offre">Offers</a>
+                        </li>
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.3s"><a href="/contact">Contact us</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPERADMIN') %}
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.4s"><a href="/admin">Admin</a>
+                        </li>
+                        {% endif %}
+                        {% if not app.user %}
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.4s"><a href="/connexion">Login</a>
+                        </li>
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.5s"><a
+                                href="/inscription">Register</a></li>
+                        {% else %}
+                        <li class="wow fadeInDown pr-1" data-wow-duration="1.4s" data-wow-delay="0.4s"><a href="/deconnexion">Logout</a>
+                        </li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+                <div class="cart col-6 col-md-2 text-right verticalMiddle">
+                    <div>
+                        
+                        <i class="fa fa-shopping-cart ml-4 d-none d-xl-inline wow fadeInDown" data-wow-duration="1.4s"
+                            data-wow-delay="0.7s" aria-hidden="true"><span
+                                class="badge badge-primary badge-pill"><a href="/panier" style="color : white;">{{ app.session.get('countPanier') }}</a></span></i>
+                        
+                        <i class="fa fa-search ml-2 d-none d-xl-inline wow fadeInDown" data-wow-duration="1.4s"
+                            data-wow-delay="0.8s" aria-hidden="true"></i>
+                        <i class="fa fa-bars ml-4 d-block d-xl-inline wow fadeInDown" data-wow-duration="1.4s"
+                            data-wow-delay="0.2s" aria-hidden="true" id="responsiveMenu"></i>
+                    </div>
+                </div>
+                <div class="d-none d-md-block col-md-1">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Header-->
+
+        {% block body %}{% endblock %}
+
+        <section class="footer">
+
+        <div class="socialWrapper">
+            <div class="social container">
+                <div class="row">
+                    <div
+                        class="verticalMiddle col-12 col-md-9 text-center text-lg-left pt-1 pb-3 pt-lg-0 pb-lg-0  pl-5 pr-5">
+                        We’re confident we’ve provided all the best for you. Stay connect with us
+                    </div>
+                    <div
+                        class="verticalMiddle col-12 col-md-3 text-center text-lg-right pt-1 pb-3 pt-lg-0 pb-lg-0 d-flex flex-row justify-content-between socialIcons">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        <i class="fa fa-behance" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid menuWrapper pt-5 pt-lg-0">
+            <div
+                class="menu container d-flex flex-column flex-lg-row justify-content-lg-between pt-lg-5 pb-lg-5 pl-5 pr-5">
+                <div>
+                    <h3>Information</h3>
+                    <ul>
+                        <li>Delivery Information</li>
+                        <li>Discount</li>
+                        <li>Sitemap</li>
+                        <li>Privacy Policy</li>
+                        <li>My Account</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>My Account</h3>
+                    <ul>
+                        <li>Sign In</li>
+                        <li>View Cart</li>
+                        <li>My Wishlist</li>
+                        <li>Check out</li>
+                        <li>Track My Order</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Help</h3>
+                    <ul>
+                        <li>F.A.Q.</li>
+                        <li>Shipping</li>
+                        <li>Contact Us</li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fa fa-globe" aria-hidden="true"></i> 1234 Your Address, Country</li>
+
+                        <li><i class="fa fa-phone" aria-hidden="true"></i> +1 234 5678 9999</li>
+
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:mail@domain.com"
+                                target="_blank">mail@domain.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid copyrightWrapper">
+            <div class="copyright container">
+                <div class="row">
+                    <div class="verticalMiddle col-12 col-lg-6 text-center text-lg-left pt-1 pb-3 pt-lg-0 pb-lg-0 ">
+                        Copyright 2017 RenoshopBee all right reserved - Design by BeeStudios</div>
+                    <div class="verticalMiddle col-12 col-lg-6 text-center text-lg-right pt-1 pb-3 pt-lg-0 pb-lg-0"><img
+                            src="assets/img/card.png" alt="Ödeme Şekilleri" class="img-fluid paymentCards"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        {% block javascripts %}
+
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="{{ asset('assets/js/script.min.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

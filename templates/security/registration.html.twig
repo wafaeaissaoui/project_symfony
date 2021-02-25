@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RenoshopBee - Register{% endblock %}
+
+{% block body %}
+<section class="shopChechout">
+        <div class="container">
+            
+            <div class="shipping-shopping">
+                <div class="row mb-5 mt-4">
+                    <div class="col-md-6 mb-3">
+                        {% for message in app.flashes('success') %} 
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <h6>REGISTER</h6>
+                        <!--<form action="/registerButton">-->
+                        {{ form_start(form) }}
+                        <div class="my-custom-class-for-errors">
+                            {{ form_errors(form) }}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">E-mail <span class="red">*</span></label>
+                                {{ form_row(form.email, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Username <span class="red">*</span></label>
+                                {{ form_row(form.username, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Password <span class="red">*</span></label>
+                                {{ form_row(form.password, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Repeat Password <span class="red">*</span></label>
+                                {{ form_row(form.confirm_password, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">First Name <span class="red">*</span></label>
+                                {{ form_row(form.prenom, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Family Name <span class="red">*</span></label>
+                                {{ form_row(form.nom, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Phone Number <span class="red">*</span></label>
+                                {{ form_row(form.telephone, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Address <span class="red">*</span></label>
+                                {{ form_row(form.adresse, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check mt-4">
+                                    <button type="submit" class="btn-small mb-5 mt-3 float-right" style="width: 120px;">REGISTER</button>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                        <!--</form>-->
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

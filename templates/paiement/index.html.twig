@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RenoshopBee - Checkout{% endblock %}
+
+{% block body %}
+<section class="shopChechout">
+        <div class="container">
+            <nav aria-label="breadcrumb mt-5">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Page</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Checkout</a></li>
+                </ol>
+            </nav>
+
+            <div class="shipping-shopping">
+                <div class="row mb-5 mt-4">
+                    <div class="col-md-6 mb-3" hidden>
+                        <h6>BILLING DETAILS</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class=" mt-4">First Name <span class="red">*</span></label>
+                                <input type="text" class="txt-large" placeholder="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class=" mt-4">Last Name <span class="red">*</span></label>
+                                <input type="text" class="txt-large" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-3">Country <span class="red">*</span></label>
+                                <select class="form-control form-control-lg">
+                                    <option>Morocco</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-3">Company Name <span class="red"></span></label>
+                                <input type="text" class="txt-large" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-3">Address <span class="red">*</span></label>
+                                <input type="text" class="txt-large" placeholder="Street address">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="mt-3">Postcode / Zip <span class="red"></span></label>
+                                <input type="text" class="txt-large" placeholder="Postcode / Zip">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="gray mt-3">Town / City <span class="red">*</span></label>
+                                <input type="text" class="txt-large" placeholder="Town / City">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class=" mt-3">Email Address <span class="red">*</span></label>
+                                <input type="text" class="txt-large" placeholder="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class=" mt-3">Phone <span class="red">*</span></label>
+                                <input type="text" class="txt-large" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check mt-4">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Create an account?</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="table-bordered pl-5 pr-5 pt-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>YOUR ORDER</h6>
+                                </div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-8">
+                                    <label class="mt-4">Product</label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mt-4 float-right font-weight-normal">Total</label>
+                                </div>
+                            </div>
+                            {% if items | length > 0 %}
+                            {% for item in items %}
+                            <div class="row">
+                                <div class="col-8">
+                                    <label class="mt-4">{{ item.product.nomArticle }} x {{ item.quantity }}</label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mt-4 float-right font-weight-normal">${{ item.product.prix|number_format(2, '.', ',') * item.quantity }}</label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <!--
+                            <div class="row border-bottom pb-3">
+                                <div class="col-8">
+                                    <label class="mt-2">Casual men wearing x 2</label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mt-2 float-right font-weight-normal">$280</label>
+                                </div>
+                            </div>
+                            -->
+                            <div class="row">
+                                <div class="col-8">
+                                    <label class="mt-4">Subtotal</label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mt-4 float-right font-weight-normal">$0</label>
+                                </div>
+                            </div>
+                            <div class="row border-bottom pb-3">
+                                <div class="col-8">
+                                    <label class="mt-2">Shipping</label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mt-2 float-right font-weight-normal">Free Shipping</label>
+                                </div>
+                            </div>
+                            <div class="row pb-3">
+                                <div class="col-8">
+                                    <h5 class="mt-4">Total</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 class="mt-4 float-right">${{ total }}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-left border-right border-bottom pl-5 pr-5 pt-2">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check mt-3">
+                                        <input type="radio" class="form-check-input" id="exampleCheck2" name="modePaiement" value="Direct Bank Transfer" checked>
+                                        <label class="form-check-label" for="exampleCheck1">Direct Bank Transfer</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="bg-gray mt-3 p-2">
+                                        Make your payement directly into our bank account.</br>
+                                        Please use your Order ID as the payement refrence.</br>
+                                        Your order won't be shipped until the funds have cleared in our account.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check mt-3">
+                                        <input type="radio" class="form-check-input" id="exampleCheck2" name="modePaiement" value="Cheque Payement">
+                                        <label class="form-check-label" for="exampleCheck1">Cheque Payement</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check mt-3 mb-4">
+                                        <input type="radio" class="form-check-input" id="exampleCheck2" name="modePaiement" value="PayPal">
+                                        <label class="form-check-label" for="exampleCheck1">PayPal</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="/addpaiement">
+                        <button type="submit" class="btn-small mb-5 mt-3 float-right" style="width: 150px;">PLACE
+                            ORDER</button>
+                        <from>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+
+{% block body %}
+<section class="shopChechout">
+        <div class="container">
+            
+            <div class="shipping-shopping">
+                <div class="row mb-5 mt-4">
+                    <div class="col-md-6 mb-3">
+                        
+                        <h6>Contact US </h6>
+                        <!--<form action="/registerButton">-->
+                        {{ form_start(formcontact) }}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">E-mail <span class="red">*</span></label>
+                                {{ form_row(formcontact.email, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Objet <span class="red">*</span></label>
+                                {{ form_row(formcontact.objet, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class=" mt-4">Message <span class="red">*</span></label>
+                                {{ form_row(formcontact.message, {'label': false,'attr' : {'class': 'txt-large'}}) }}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check mt-4">
+                                    <button type="submit" class="btn-small mb-5 mt-3 float-right" style="width: 120px;">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(formcontact) }}
+                        <!--</form>-->
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

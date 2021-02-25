@@ -1,0 +1,253 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RenoshopBee - Cart{% endblock %}
+
+{% block body %}
+<section class="wishlist">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Page</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Cart</a></li>
+                </ol>
+            </nav>
+            <div class="product-whishlist pt-2 pb-5">
+                {% if items | length > 0 %}
+                <div class="table-responsive-md">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Products</td>
+                            <td>Color & Size</td>
+                            <td>Quantity</td>
+                            <td>Price</td>
+                            <td></td>
+                        </tr>
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                <div class="row justify-content-md-center pt-4 pb-4 align-items-center">
+                                    <div class="col col-lg-3 mr-2">
+                                        <img class="img-responsive" src="{{ item.product.imageArticle }}" width="90"/>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <h2>{{ item.product.nomArticle }}</h2>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="pl-3 pr-3">Size:XL</br>Color:Black</p>
+                            </td>
+                            <td>
+                                <input type="text" class="txt-small m-4" value="{{ item.quantity }}">
+                            </td>
+                            <td>
+                                <p class="pl-4 pr-4">${{ item.product.prix|number_format(2, '.', ',') }}</p>
+                            </td>
+                            <td>
+                                <div class="row justify-content-md-center align-items-center"
+                                    style="background-color: transparent;">
+                                    <div class="col col-lg-6">
+                                        ${{ item.product.prix|number_format(2, '.', ',') * item.quantity }}
+                                    </div>
+                                    <div class="col col-lg-6">
+                                        <a href="{{ path('cart_remove', {'id': item.product.id}) }}" style="color: black;"><i class="fa fa-times-circle-o" style="font-size:20px"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <!--
+                        <tr>
+                            <td>
+                                <div class="row justify-content-md-center pt-4 pb-4 align-items-center">
+                                    <div class="col col-lg-3">
+                                        <img class="img-responsive" src="assets/img/productWishlistBg.png" />
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <h2>Casual men wearing cool shoe</h2>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="pl-3 pr-3">Size:XL</br>Color:Black</p>
+                            </td>
+                            <td>
+                                <input type="text" class="txt-small m-4" value="1">
+                            </td>
+                            <td>
+                                <p class="pl-4 pr-4">$120</p>
+                            </td>
+                            <td>
+                                <div class="row justify-content-md-center align-items-center"
+                                    style="background-color: transparent;">
+                                    <div class="col col-lg-6">
+                                        $120
+                                    </div>
+                                    <div class="col col-lg-6">
+                                        <i class="fa fa-times-circle-o" style="font-size:20px"></i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row justify-content-md-center pt-4 pb-4 align-items-center">
+                                    <div class="col col-lg-3">
+                                        <img class="img-responsive" src="assets/img/productWishlistBg.png" />
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <h2>Casual men wearing cool shoe</h2>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="pl-3 pr-3">Size:XL</br>Color:Black</p>
+                            </td>
+                            <td>
+                                <input type="text" class="txt-small m-4" value="1">
+                            </td>
+                            <td>
+                                <p class="pl-4 pr-4">$120</p>
+                            </td>
+                            <td>
+                                <div class="row justify-content-md-center align-items-center"
+                                    style="background-color: transparent;">
+                                    <div class="col col-lg-6">
+                                        $120
+                                    </div>
+                                    <div class="col col-lg-6">
+                                        <i class="fa fa-times-circle-o" style="font-size:20px"></i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        -->
+                        <tr>
+                            <td colspan="5">
+                                <div class="row justify-content-md-center align-items-center float-right pr-4">
+                                    <!--<div class="col-md-7"></div>-->
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-white" style="width: 130px;">UPDATE
+                                            CART</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-small" style="width: 170px;"><a href="/produit" style="color: white; text-decoration: none;">CONTINUE
+                                            SHOPPING</a></button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                {% else %}
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <h5 class="text-center">Your Cart is empty</5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <form action="/produit" method="">
+                            <button type="submit" class="btn btn-white" style="width: 230px;">GO TO PRODUCT LIST</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!--End Whishlist-->
+
+    {% if items | length > 0 %}
+    <section class="shopCart">
+        <div class="container">
+            <div class="coupon-voucher" hidden>
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <h6>USE COUPON CODE</h6>
+                        <label class="gray mt-4">Enter Your Coupon Here</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control txt-large" placeholder="Enter your coupon here"
+                                aria-label="Enter Your Coupon Here" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text btn-large pl-5 pr-5" id="basic-addon2">APPLY</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6>USE GIFT VOUCHER</h6>
+                        <label class="gray mt-4">Enter Your Gift Voucher Code Here</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control txt-large"
+                                placeholder="Enter your gift voucher code here"
+                                aria-label="Enter Your Gift Voucher Code Here" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text btn-large pl-5 pr-5" id="basic-addon2">APPLY</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shipping-shopping">
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3" hidden>
+                        <h6>SHIPPING AVAILABILITY</h6>
+                        <label class="gray mt-4">Select Country</label>
+                        <select class="form-control form-control-lg">
+                            <option>Morocco</option>
+                        </select>
+                        <label class="gray mt-4">Select State</label>
+                        <select class="form-control form-control-lg mb-1">
+                            <option>Oujda</option>
+                        </select>
+                        <label class="gray mt-4">Postcode / Zip</label>
+                        <input type="text" class="txt-large mb-4" placeholder="Postcode / Zip">
+                        <button type="submit" class="btn btn-white mb-5" style="width: 180px;">UPDATE TOTALS</button>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <h6 class="mb-5">SHOPPING CART CALCULATION</h6>
+                        <div class="table-bordered">
+                            <div class="row pl-5 pr-5">
+                                <div class="col-8">
+                                    <label class="mt-4">Subtotal</label>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="mt-4 float-right font-weight-normal">${{ total }}</h6>
+                                </div>
+                            </div>
+                            <div class="row pl-5 pr-5">
+                                <div class="col-8">
+                                    <label class="mt-4">Coupon</label>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="mt-4 float-right font-weight-normal">-$0</h6>
+                                </div>
+                            </div>
+                            <div class="row pl-5 pr-5 mb-4">
+                                <div class="col-8">
+                                    <label class="mt-4">Shipping</label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mt-4 float-right font-weight-normal">Free Shipping</label>
+                                </div>
+                            </div>
+                            <div class="row border-top ml-0 mr-0 pl-5 pr-5 pb-3">
+                                <div class="col-8">
+                                    <label class="mt-4">Total</label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mt-4 float-right font-weight-normal">${{ total }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-large mb-5 mt-3 float-right" style="width: 220px;"><a href="{% if app.user %}/paiement{% else %}/connexion{% endif %}" style="color: white; text-decoration: none;">PROCEED TO
+                            CHECKOUT</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,351 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RenoshopBee - Offers{% endblock %}
+
+{% block body %}
+<section class="relatedProducts">
+        <div class="container">
+            <nav aria-label="breadcrumb" style="padding-top: 3rem; padding-bottom: 0.3rem;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Page</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Offers</a></li>
+                </ol>
+            </nav>
+            <div class="row justify-content-center border-bottom mb-5" style="align-items : center;">
+                <div class="col-md-9 showing">
+                    <p>Showing 1-12 of 44 results</p>
+                </div>
+                <div class="col-md-3 sortby">
+                    <select class="form-control form-control-lg">
+                        <option>Sort by newness</option>
+                    </select>
+                </div>
+            </div>
+            {% set cpt = 0 %} {% set dwd = 0.2 %}
+            {% for offre in offre %}
+            {% set cpt = cpt + 1 %} 
+            {% set dwd = dwd + 0.2 %}
+            {% if cpt == 1 %}
+            <div
+                class="row d-flex flex-md-row justify-content-center justify-content-md-around justify-content-lg-end  justify-content-xl-around flex-xl-nowrap pt-2">
+            {%endif%}
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="{{ dwd }}s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <a href="/panier/add/{{offre.article.id}}"><i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="{{ path('detailProduit', {'id' : offre.article.id})}}"><img src="{{ offre.article.imageArticle }}" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>{{ offre.article.nomArticle }}</h5>
+                        <div class="fiyat pb-1"><span style="text-decoration: line-through;">${{ offre.article.prix|number_format(2, '.', ',') }}</span> | ${{ offre.nPrix|number_format(2, '.', ',') }}</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            {% if cpt == 4 %}
+            </div>
+            {% set cpt = 0 %}
+            {% set dwd = 0.2 %}
+            {%endif%}
+            {%endfor%}
+                <!--
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.4s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Joust Duffle Bag</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.6s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Voyage Yoga Bag</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.8s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Treatise on the</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="row d-flex flex-md-row justify-content-center justify-content-md-around justify-content-lg-end  justify-content-xl-around flex-xl-nowrap pt-2">
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.2s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Crown Summit Backpack</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.4s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Joust Duffle Bag</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.6s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Voyage Yoga Bag</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.8s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Treatise on the</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="row d-flex flex-md-row justify-content-center justify-content-md-around justify-content-lg-end  justify-content-xl-around flex-xl-nowrap pt-2 pb-5">
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.2s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Crown Summit Backpack</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.4s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Joust Duffle Bag</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.6s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Voyage Yoga Bag</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="productCard pl-2 pr-2 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.8s">
+                    <div class="productHover">
+                        <div class="kare mb-2">
+                            <i class="fa fa-shopping-cart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-heart pt-2" aria-hidden="true"></i>
+                        </div>
+                        <div class="kare mb-2">
+                            <i class="fa fa-retweet pt-2" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <a href="/detailProduit"><img src="assets/img/productBg.png" class="card-img-top" alt=""></a>
+                    <div class="card-body pl-0">
+                        <h5>Treatise on the</h5>
+                        <div class="fiyat pb-1">$250.00</div>
+                        <div class="rating"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
+                                class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o"
+                                aria-hidden="true"></i></div>
+                    </div>
+                </div>-->
+            </div>
+            <nav class="pag p-0" aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item first">
+                        <a class="page-link" href="#" aria-label="First">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">First</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&lsaquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link">...</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&rsaquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                    <li class="page-item last">
+                        <a class="page-link" href="#" aria-label="Last">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Last</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <!--End RelatedProducts-->
+{% endblock %}

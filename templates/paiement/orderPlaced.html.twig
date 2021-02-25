@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RenoshopBee - Checkout{% endblock %}
+
+{% block body %}
+<section class="shopChechout">
+        <div class="container">
+            <nav aria-label="breadcrumb mt-5">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Page</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Checkout</a></li>
+                </ol>
+            </nav>
+
+            <div class="shipping-shopping">
+                <div class="row mb-5 mt-4">
+                    <div class="col-md-12 mb-3 text-center">
+                        <h6>your order has been placed</h6>
+                    </div>
+                    <div class="col-md-12 mb-3 text-center">  
+                        <form action="/produit">
+                            <button type="submit" class="btn btn-white" style="width: 230px;">GO TO PRODUCT LIST</button>
+                        <from>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
